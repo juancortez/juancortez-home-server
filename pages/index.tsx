@@ -1,6 +1,11 @@
 import Layout from '../components/Layout'
 import styled from 'styled-components';
 
+import '@fortawesome/fontawesome-free/js/fontawesome';
+import '@fortawesome/fontawesome-free/js/solid';
+import '@fortawesome/fontawesome-free/js/regular';
+import '@fortawesome/fontawesome-free/js/brands';
+
 const StyledHeaderSection = styled.section`
   display: flex;
   align-items: center;
@@ -8,8 +13,8 @@ const StyledHeaderSection = styled.section`
   flex-direction: column;
   text-align: center;
 
-  margin-top: 10vh;
-  margin-bottom: 10vh;
+  margin-top: 5vh;
+  margin-bottom: 5vh;
 `;
 
 const StyledArticle = styled.article`
@@ -30,12 +35,18 @@ const StyledBlockQuote = styled.blockquote`
   font-style: italic;
 `;
 
+const StyledWorkContentSection = styled.section`
+  margin-bottom: 10vh;
+`;
+
 const StyledContentSection = styled.section`
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-content: center;
   flex-wrap: wrap;
+
+  
 `;
 
 const CompanyOverlay = styled.div`
@@ -90,9 +101,38 @@ const StyledCompanyLink = styled.a`
 `;
 
 const StyledFigCaption = styled.figcaption`
-  color: black;
+  color: #164A41;
   font-size: 40px;
   padding: 16px 32px;
+`;
+
+const StyledWorkExperienceHeader = styled.h2`
+  position: relative;
+  line-height: 1.2em;
+  text-align: center;
+  font-size: 42px;
+  display: inline-block;
+
+  :before {
+    position: absolute;
+    content: '';
+    height: 4px;
+    width: 25%;
+    background: #164A41;
+    position: absolute;
+    left: calc(50% - 15%);
+    bottom: -20px;
+`;
+
+const CenterAlignDiv = styled.header`
+  text-align: center;
+`;
+
+const StyledProfilePicture = styled.img`
+  width: 250px;
+  vertical-align: middle;
+  border-radius: 50%;
+  border: 3px solid #F1B24A;
 `;
 
 interface CompanyMetadata {
@@ -113,20 +153,20 @@ const companies: CompanyMetadata[] = [
     company: 'RigUp',
   },
   {
-  linkUrl: '/microsoft',
-  imageUrl: '/images/Microsoft.svg',
-  company: 'Microsoft'
-},
-{
-  linkUrl: '/postmates',
-  imageUrl: '/images/Postmates.svg',
-  company: 'Postmates',
-},
-{
-  linkUrl: '/ibm',
-  imageUrl: '/images/IBM.svg',
-  company: 'IBM',
-},
+    linkUrl: '/postmates',
+    imageUrl: '/images/Postmates.svg',
+    company: 'Postmates',
+  },
+  {
+    linkUrl: '/microsoft',
+    imageUrl: '/images/Microsoft.svg',
+    company: 'Microsoft'
+  },
+  {
+    linkUrl: '/ibm',
+    imageUrl: '/images/IBM.svg',
+    company: 'IBM',
+  },
 ];
 
 const IndexPage = () => {
@@ -135,12 +175,18 @@ const IndexPage = () => {
       <StyledHeaderSection>
         <StyledNameHeader>Hi. I'm Juan Cortez.</StyledNameHeader>
 
+        <StyledProfilePicture src='/images/Juan.jpeg'></StyledProfilePicture>
+
         <StyledArticle>
           <StyledArticleText>Empathy towards end users has always been my greatest trait.</StyledArticleText>
           <StyledBlockQuote>"When people talk, listen completely. Most people never listen." - Ernest Hemingway</StyledBlockQuote>
         </StyledArticle>
       </StyledHeaderSection>
 
+    <StyledWorkContentSection>
+      <CenterAlignDiv>
+        <StyledWorkExperienceHeader>Work Experience</StyledWorkExperienceHeader>
+      </CenterAlignDiv>
       <StyledContentSection>
         {companies.map((c: CompanyMetadata) => {
           return (
@@ -157,6 +203,7 @@ const IndexPage = () => {
           )
         })}
       </StyledContentSection>
+    </StyledWorkContentSection>
     </Layout>
   )
 }
