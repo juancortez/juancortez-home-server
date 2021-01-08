@@ -1,10 +1,7 @@
-import Layout from '../components/Layout'
+import Layout from '../components/Layout';
 import styled from 'styled-components';
 
-import '@fortawesome/fontawesome-free/js/fontawesome';
-import '@fortawesome/fontawesome-free/js/solid';
-import '@fortawesome/fontawesome-free/js/regular';
-import '@fortawesome/fontawesome-free/js/brands';
+import { CompanyMetadata } from './../interfaces';
 
 const StyledHeaderSection = styled.section`
   display: flex;
@@ -45,12 +42,10 @@ const StyledContentSection = styled.section`
   justify-content: center;
   align-content: center;
   flex-wrap: wrap;
-
-  
 `;
 
 const CompanyOverlay = styled.div`
-  transition: .5s ease;
+  transition: 0.5s ease;
   opacity: 0;
   position: absolute;
   top: 50%;
@@ -65,14 +60,13 @@ const StyledCompanyImage = styled.img`
   max-width: 300px;
 `;
 
-
 const StyledCompanyArticle = styled.article`
   opacity: 1;
   position: relative;
   min-width: 450px;
   max-width: 500px;
   margin: auto;
-  transition: background-color 140ms cubic-bezier(.33,0,.2,1);
+  transition: background-color 140ms cubic-bezier(0.33, 0, 0.2, 1);
   padding: 16px;
 
   &:hover ${StyledCompanyImage} {
@@ -95,13 +89,12 @@ const StyledFigure = styled.figure`
   color: #111;
 `;
 
-
 const StyledCompanyLink = styled.a`
   text-decoration: none;
 `;
 
 const StyledFigCaption = styled.figcaption`
-  color: #164A41;
+  color: #164a41;
   font-size: 40px;
   padding: 16px 32px;
 `;
@@ -132,50 +125,59 @@ const StyledProfilePicture = styled.img`
   width: 250px;
   vertical-align: middle;
   border-radius: 50%;
-  border: 3px solid #F1B24A;
+  border: 3px solid #f1b24a;
 `;
-
-interface CompanyMetadata {
-  linkUrl: string;
-  imageUrl: string;
-  company: string;
-}
 
 const companies: CompanyMetadata[] = [
   {
     linkUrl: '/amazon',
     imageUrl: '/images/Amazon.svg',
     company: 'Amazon',
+    position: 'Front End Engineer 2',
+    startYear: '2021',
+    endYear: 'Present',
   },
   {
     linkUrl: '/rigup',
     imageUrl: '/images/RigUp.svg',
     company: 'RigUp',
+    position: 'Staff Software Engineer',
+    startYear: '2019',
+    endYear: '2021',
   },
   {
     linkUrl: '/postmates',
     imageUrl: '/images/Postmates.svg',
     company: 'Postmates',
+    position: 'Software Engineer',
+    startYear: '2019',
+    endYear: '2019',
   },
   {
     linkUrl: '/microsoft',
     imageUrl: '/images/Microsoft.svg',
-    company: 'Microsoft'
+    company: 'Microsoft',
+    position: 'Software Engineer 2',
+    startYear: '2017',
+    endYear: '2019',
   },
   {
     linkUrl: '/ibm',
     imageUrl: '/images/IBM.svg',
     company: 'IBM',
+    position: 'Staff Software Engineer',
+    startYear: '2015',
+    endYear: '2017',
   },
 ];
 
 const IndexPage = () => {
   return (
-  <Layout title="Juan Cortez">
+    <Layout title="Juan Cortez">
       <StyledHeaderSection>
         <StyledNameHeader>Hi. I'm Juan Cortez.</StyledNameHeader>
 
-        <StyledProfilePicture src='/images/Juan.jpeg'></StyledProfilePicture>
+        <StyledProfilePicture src="/images/Juan.jpeg"></StyledProfilePicture>
 
         <StyledArticle>
           <StyledArticleText>Empathy towards end users has always been my greatest trait.</StyledArticleText>
@@ -183,30 +185,32 @@ const IndexPage = () => {
         </StyledArticle>
       </StyledHeaderSection>
 
-    <StyledWorkContentSection>
-      <CenterAlignDiv>
-        <StyledWorkExperienceHeader>Work Experience</StyledWorkExperienceHeader>
-      </CenterAlignDiv>
-      <StyledContentSection>
-        {companies.map((c: CompanyMetadata) => {
-          return (
-            <StyledCompanyArticle key={c.company}>
+      <StyledWorkContentSection>
+        <CenterAlignDiv>
+          <StyledWorkExperienceHeader>Work Experience</StyledWorkExperienceHeader>
+        </CenterAlignDiv>
+        <StyledContentSection>
+          {companies.map((c: CompanyMetadata) => {
+            return (
+              <StyledCompanyArticle key={c.company}>
                 <StyledCompanyLink href={c.linkUrl}>
                   <StyledFigure>
-                    <StyledCompanyImage src={c.imageUrl}/>
+                    <StyledCompanyImage src={c.imageUrl} />
                     <CompanyOverlay>
                       <StyledFigCaption>{c.company}</StyledFigCaption>
+                      <span>{c.position}</span>
+                      <br />
+                      <span>{c.startYear}</span> -<span>{c.endYear}</span>
                     </CompanyOverlay>
                   </StyledFigure>
                 </StyledCompanyLink>
-            </StyledCompanyArticle>
-          )
-        })}
-      </StyledContentSection>
-    </StyledWorkContentSection>
+              </StyledCompanyArticle>
+            );
+          })}
+        </StyledContentSection>
+      </StyledWorkContentSection>
     </Layout>
-  )
-}
+  );
+};
 
-
-export default IndexPage
+export default IndexPage;

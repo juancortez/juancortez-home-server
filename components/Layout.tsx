@@ -1,7 +1,7 @@
-import React, { ReactNode } from 'react'
-import Link from 'next/link'
-import Head from 'next/head'
-import { createGlobalStyle } from 'styled-components'
+import React, { ReactNode } from 'react';
+import Link from 'next/link';
+import Head from 'next/head';
+import { createGlobalStyle } from 'styled-components';
 import styled from 'styled-components';
 
 const GlobalStyle = createGlobalStyle`
@@ -23,23 +23,23 @@ const StyledMain = styled.main`
 `;
 
 const StyledHeader = styled.header`
-  background: #164A41;
+  background: #164a41;
   height: 75px;
 `;
 
 const StyledFooter = styled.footer`
-  background: #164A41;
+  background: #164a41;
   height: 75px;
 `;
 
 const StyledText = styled.a`
   font-size: 20px;
-  color: #FFFFFF;
+  color: #ffffff;
   padding: 0px 16px;
   margin-right: 16px;
 
   &:hover {
-    color: #F1B24A;
+    color: #f1b24a;
     cursor: pointer;
   }
 `;
@@ -58,7 +58,8 @@ const StyledFooterSection = styled.section`
   color: white;
   height: 100%;
 
-  article, aside {
+  article,
+  aside {
     padding: 8px 8px;
     height: 100%;
   }
@@ -66,11 +67,15 @@ const StyledFooterSection = styled.section`
 
 const StyledQuoteContainer = styled.article`
   flex: 3;
+
+  display: flex;
+  justify-content: start;
+  align-items: center;
 `;
 
 const StyledIconContainer = styled.aside`
   flex: 1;
-  background: #9DC88D;
+  background: #9dc88d;
   font-size: 16px;
 
   display: flex;
@@ -82,29 +87,33 @@ const StyledIconContainer = styled.aside`
     cursor: pointer;
   }
 
-  a:visited, a:hover, a:active {
+  a:visited,
+  a:hover,
+  a:active {
     color: white;
   }
 
-  svg {
+  img {
+    width: 32px;
+    height: 32px;
     margin: 0px 16px;
   }
 `;
 
 type Props = {
-  children?: ReactNode
-  title?: string
-}
+  children?: ReactNode;
+  title?: string;
+};
 
 const Layout = ({ children, title = 'This is the default title' }: Props) => (
   <div>
-  <GlobalStyle/>
+    <GlobalStyle />
     <Head>
       <title>{title}</title>
       <meta charSet="utf-8" />
       <meta name="viewport" content="initial-scale=1.0, width=device-width" />
       <link rel="preconnect" href="https://fonts.gstatic.com"></link>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet"></link>
+      <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet"></link>
     </Head>
     <StyledHeader>
       <StyledNav>
@@ -119,25 +128,23 @@ const Layout = ({ children, title = 'This is the default title' }: Props) => (
         </Link>
       </StyledNav>
     </StyledHeader>
-    <StyledMain>
-      {children}
-    </StyledMain>
+    <StyledMain>{children}</StyledMain>
     <StyledFooter>
       <StyledFooterSection>
         <StyledQuoteContainer>
-          <blockquote>"Be ye doers of the word and not hearers only" James 1:22</blockquote>
+          <p>"Be ye doers of the word and not hearers only" James 1:22</p>
         </StyledQuoteContainer>
         <StyledIconContainer>
-          <a href='https://www.linkedin.com/in/juancortezjr' target="_blank">
-            <i className="fab fa-linkedin fa-3x"></i>
+          <a href="https://www.linkedin.com/in/juancortezjr" target="_blank">
+            <img src="/assets/LinkedIn.svg" />
           </a>
-          <a href='https://github.com/juancortez' target="_blank">
-            <i className="fab fa-github fa-3x"></i>
+          <a href="https://github.com/juancortez" target="_blank">
+            <img src="/assets/GitHub.svg" />
           </a>
         </StyledIconContainer>
       </StyledFooterSection>
     </StyledFooter>
   </div>
-)
+);
 
-export default Layout
+export default Layout;
