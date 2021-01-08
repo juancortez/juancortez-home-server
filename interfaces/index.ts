@@ -8,6 +8,6 @@ export interface CompanyMetadata {
   imageUrl: string;
   company: string;
   position: string;
-  startYear: string;
-  endYear: string;
+  startYear: number;
+  endYear: number;
 }

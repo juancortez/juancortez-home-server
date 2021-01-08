@@ -1,7 +1,6 @@
-import React, { ReactNode } from 'react';
+import React from 'react';
 
 import styled from 'styled-components';
-import Layout from '../components/Layout';
 import { CompanyMetadata } from './../interfaces';
 
 const CompanyHeaderContainer = styled.header`
@@ -31,7 +30,7 @@ type Props = {
   companyMetadata: CompanyMetadata;
 };
 
-const RigUpPage = ({ companyMetadata }: Props) => {
+const CompanyShellPage = ({ companyMetadata }: Props) => {
   const { company, position, startYear, endYear } = companyMetadata;
   return (
     <CompanyHeaderContainer>
@@ -44,4 +43,4 @@ const RigUpPage = ({ companyMetadata }: Props) => {
   );
 };
 
-export default RigUpPage;
+export default CompanyShellPage;

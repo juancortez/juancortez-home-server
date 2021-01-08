@@ -1,7 +1,21 @@
 import Layout from '../components/Layout';
 import styled from 'styled-components';
+import executeQuery from '../lib/db';
 
 import { CompanyMetadata } from './../interfaces';
+
+interface DBCompanyData {
+  link_url: string;
+  image_url: string;
+  company_name: string;
+  start_year: number;
+  end_year: number;
+  position: string;
+}
+
+interface StaticProps {
+  companies: CompanyMetadata[];
+}
 
 const StyledHeaderSection = styled.section`
   display: flex;
@@ -128,50 +142,9 @@ const StyledProfilePicture = styled.img`
   border: 3px solid #f1b24a;
 `;
 
-const companies: CompanyMetadata[] = [
-  {
-    linkUrl: '/amazon',
-    imageUrl: '/images/Amazon.svg',
-    company: 'Amazon',
-    position: 'Front End Engineer 2',
-    startYear: '2021',
-    endYear: 'Present',
-  },
-  {
-    linkUrl: '/rigup',
-    imageUrl: '/images/RigUp.svg',
-    company: 'RigUp',
-    position: 'Staff Software Engineer',
-    startYear: '2019',
-    endYear: '2021',
-  },
-  {
-    linkUrl: '/postmates',
-    imageUrl: '/images/Postmates.svg',
-    company: 'Postmates',
-    position: 'Software Engineer',
-    startYear: '2019',
-    endYear: '2019',
-  },
-  {
-    linkUrl: '/microsoft',
-    imageUrl: '/images/Microsoft.svg',
-    company: 'Microsoft',
-    position: 'Software Engineer 2',
-    startYear: '2017',
-    endYear: '2019',
-  },
-  {
-    linkUrl: '/ibm',
-    imageUrl: '/images/IBM.svg',
-    company: 'IBM',
-    position: 'Staff Software Engineer',
-    startYear: '2015',
-    endYear: '2017',
-  },
-];
+const PRESENT_IDENTIFIER = 9999;
 
-const IndexPage = () => {
+const IndexPage = ({ companies }: StaticProps) => {
   return (
     <Layout title="Juan Cortez">
       <StyledHeaderSection>
@@ -200,7 +173,7 @@ const IndexPage = () => {
                       <StyledFigCaption>{c.company}</StyledFigCaption>
                       <span>{c.position}</span>
                       <br />
-                      <span>{c.startYear}</span> -<span>{c.endYear}</span>
+                      <span>{c.startYear}</span> - <span>{c.endYear === PRESENT_IDENTIFIER ? 'Present' : c.endYear}</span>
                     </CompanyOverlay>
                   </StyledFigure>
                 </StyledCompanyLink>
@@ -212,5 +185,31 @@ const IndexPage = () => {
     </Layout>
   );
 };
+
+export async function getStaticProps(): Promise<{ props: StaticProps }> {
+  const results = await executeQuery<DBCompanyData[]>({
+    query: 'SELECT * from WORK_EXPERIENCE ORDER BY end_year DESC',
+  });
+
+  const serializedData: CompanyMetadata[] = results.map((d) => {
+    const { link_url: linkUrl, image_url: imageUrl, company_name: company, start_year: startYear, end_year: endYear, position: position } = d;
+    return {
+      linkUrl,
+      imageUrl,
+      company,
+      startYear,
+      endYear,
+      position,
+    };
+  });
+
+  //
+
+  return {
+    props: {
+      companies: serializedData,
+    },
+  };
+}
 
 export default IndexPage;
