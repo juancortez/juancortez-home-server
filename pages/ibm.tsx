@@ -8,16 +8,16 @@ interface StaticProps {
   companyMetadata: CompanyMetadata;
 }
 
-const RigUpPage = ({ companyMetadata }: StaticProps) => {
+const IBMPage = ({ companyMetadata }: StaticProps) => {
   return (
-    <Layout title="RigUp">
+    <Layout title="IBM">
       <CompanyShell companyMetadata={companyMetadata} />
     </Layout>
   );
 };
 
 export async function getStaticProps(): Promise<{ props: StaticProps }> {
-  const companyMetadata: CompanyMetadata = await fetchCompanyData('RigUp');
+  const companyMetadata: CompanyMetadata = await fetchCompanyData('IBM');
 
   return {
     props: {
@@ -26,4 +26,4 @@ export async function getStaticProps(): Promise<{ props: StaticProps }> {
   };
 }
 
-export default RigUpPage;
+export default IBMPage;

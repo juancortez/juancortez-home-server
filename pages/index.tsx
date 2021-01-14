@@ -1,5 +1,5 @@
 import Layout from '../components/Layout';
-import executeQuery from '../lib/db';
+import executeQuery from '../lib/db/db';
 
 import {
   StyledHeaderSection,

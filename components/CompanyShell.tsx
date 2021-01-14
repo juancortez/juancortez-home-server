@@ -37,7 +37,7 @@ const CompanyShellPage = ({ companyMetadata }: Props) => {
       <CompanyHeader>{company}</CompanyHeader>
       <h2>{position}</h2>
       <h3>
-        {startYear}-{endYear}
+        {startYear}-{endYear === 9999 ? 'Present' : endYear}
       </h3>
     </CompanyHeaderContainer>
   );
