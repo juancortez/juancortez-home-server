@@ -132,7 +132,7 @@ const Layout = ({ children, title = 'This is the default title' }: Props) => (
     <StyledFooter>
       <StyledFooterSection>
         <StyledQuoteContainer>
-          <p>"Be ye doers of the word and not hearers only" James 1:22</p>
+          <p>Trust your work to the Lord, and your plans will work out well. - Proverbs 16:3</p>
         </StyledQuoteContainer>
         <StyledIconContainer>
           <a href="https://www.linkedin.com/in/juancortezjr" target="_blank">
