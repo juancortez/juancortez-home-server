@@ -10,15 +10,14 @@ export const StyledHeaderSection = styled.section`
   padding-top: 5vh;
   padding-bottom: 5vh;
 
-  background: url('images/Circuit_Board.svg');
+  background: #ddd;
+  background: url('images/Circuit_Board.svg') top left;
 `;
 
-const StyledPlainCircuitBoardUrl = "url('images/White_Circuit_Board.svg')";
 const TextShadowTextStyle = '2px 2px #164a41;';
 
 export const StyledArticle = styled.article`
   max-width: 67vw;
-  background: ${StyledPlainCircuitBoardUrl};
   text-shadow: ${TextShadowTextStyle};
 `;
 
@@ -26,7 +25,6 @@ export const StyledNameHeader = styled.h1`
   font-size: 42px;
   font-weight: bold;
   color: white;
-  background: ${StyledPlainCircuitBoardUrl};
   text-shadow: ${TextShadowTextStyle};
 `;
 
@@ -135,6 +133,7 @@ export const CenterAlignDiv = styled.header`
 
 export const StyledProfilePicture = styled.img`
   width: 250px;
+  height: 250px;
   vertical-align: middle;
   border-radius: 50%;
   border: 3px solid #f1b24a;
